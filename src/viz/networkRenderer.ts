@@ -1,5 +1,5 @@
-import * as d3 from 'd3';
-import { Node, Link, State } from "../types";
+import * as d3 from "d3"
+import { Node, Link } from "../types"
 
 class NetworkRenderer {
   private svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
@@ -67,22 +67,9 @@ class NetworkRenderer {
       .selectAll<SVGCircleElement, Node>("circle")
       .data(nodes)
       .join("circle")
+      .attr("node-id", d => d.id)
       .attr("r", 5) // radius
-      .attr("fill", d => {
-        if (d.isStart) return "yellow";
-        if (d.isEnd) return "pink";
-        if (d.isPath) return "orange";
-        switch (d.state) {
-          case State.Undiscovered:
-            return "blue";
-          case State.Discovered:
-            return "green";
-          case State.Processed:
-            return "red";
-          default:
-            return "black";
-        }
-      });
+      .attr("fill", d => d.GetColor());
 
     // Adds a tootltip with the node id
     node.append("title")

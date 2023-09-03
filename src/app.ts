@@ -1,8 +1,8 @@
 import AdjacencyList from "./utils/adjacencyList"
 import Network from "./utils/network"
 import NetworkRenderer from "./viz/networkRenderer"
-import { Link, Node, State } from "./types"
-// import Bfs from './Bfs';
+import { Link, Node } from "./types"
+import Bfs from "./algorithms/Bfs";
 
 class App {
   nodes: Node[] = [];
@@ -12,6 +12,7 @@ class App {
 
   constructor() {
     this.initializeNetwork();
+    this.setUpButtons();
   }
 
   private initializeNetwork = () : void => {
@@ -20,6 +21,20 @@ class App {
     this.nodes = nodes;  // Store nodes in a class field for later use
     this.links = links;
     new NetworkRenderer(nodes, links);
+  }
+
+  private setUpButtons = () : void => {
+    const self = this;
+    document.addEventListener("DOMContentLoaded", function() {
+      const runBfsButton = document.getElementById("runBfsButton");
+    
+      if (runBfsButton) {
+        runBfsButton.addEventListener("click", () => {
+          const bfs = new Bfs();
+          bfs.FindShortestPath(self.nodes, 0, 5);
+        });
+      }
+    });
   }
 }
 

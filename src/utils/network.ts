@@ -1,4 +1,4 @@
-import { Link, Node, State } from "../types"
+import { Link, Node } from "../types"
 
 class Network {
     CreateNetwork = (adjacencyList: number[][]) => {
@@ -7,15 +7,7 @@ class Network {
 
         // Create nodes based on the length of the adjacency list
         for (let i = 0; i < adjacencyList.length; i++) {
-            const node: Node = { 
-                id: i,
-                state: State.Undiscovered,
-                children: [],
-                isStart: false,
-                isEnd: false,
-                isPath: false
-            };
-            nodes.push(node);
+            nodes.push(new Node(i));
         }
   
         // Create links based on the adjacency list
