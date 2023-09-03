@@ -1,0 +1,8 @@
+# dependencies
+/node_modules
+
+# Ignore everything in dist/
+dist/*
+
+# Except index.html
+!dist/index.html
