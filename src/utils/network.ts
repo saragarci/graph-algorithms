@@ -1,28 +1,60 @@
-import { Link, Node } from "../types"
+import { Link, Node } from '../types'
 
 class Network {
-    CreateNetwork = (adjacencyList: number[][]) => {
-        const nodes: Node[] = [];
-        const links: Link[] = [];
+    nodes: Node[] = []
+    links: Link[] = []
 
+    constructor(adjacencyList: number[][]) {
         // Create nodes based on the length of the adjacency list
         for (let i = 0; i < adjacencyList.length; i++) {
-            nodes.push(new Node(i));
+            this.nodes.push(new Node(i))
         }
   
         // Create links based on the adjacency list
         for (let i = 0; i < adjacencyList.length; i++) {
             for (let j = i+1; j < adjacencyList[i].length; j++) {
-                if (adjacencyList[i][j] != 0) {
-                    nodes[i].children.push(nodes[j]);
-                    const link: Link = { source: nodes[i], target: nodes[j], value: 1 };
-                    links.push(link);
+                const value: number = adjacencyList[i][j]
+                if (value) {
+                    const source: Node = this.nodes[i]
+                    const target: Node = this.nodes[j]
+                    const link: Link = new Link(source, target, value)
+                    this.links.push(link)
+                    source.children.set(target, link)
                 }
             }
         }
-  
-        return { nodes, links };
+    }
+
+    public DrawShortestPath = (start: number, end: number) => {
+        const startNode = this.nodes[start]
+        startNode.isStart = true
+        startNode.Update()
+        
+        const endNode = this.nodes[end]
+        endNode.isEnd = true
+        endNode.Update()
+        
+        let currentNode = endNode
+        while (currentNode && currentNode !== startNode) {
+            // update node
+            currentNode.isPath = true
+            currentNode.Update()
+            
+            const parent = currentNode.parent
+            if (parent) {
+                // update link
+                let link = parent.children.get(currentNode)
+                if (link) {
+                    link.isPath = true
+                    link.Update()
+                }
+
+                currentNode = parent
+            } else {
+                return
+            }
+        }
     }
 }
 
-export default Network;
+export default Network

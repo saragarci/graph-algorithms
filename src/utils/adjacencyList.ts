@@ -1,5 +1,5 @@
 class AdjacencyList {
-    adjacencyList: number[][];
+    adjacencyList: number[][]
 
     constructor() {
         this.adjacencyList = [
@@ -14,7 +14,7 @@ class AdjacencyList {
         ];
     }
 
-    GetAdjacencyList = () => this.adjacencyList;
+    GetAdjacencyList = () => this.adjacencyList
 }
 
-export default AdjacencyList;
+export default AdjacencyList
