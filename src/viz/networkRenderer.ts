@@ -3,26 +3,27 @@ import { Node, Link } from '../types'
 
 class NetworkRenderer {
   private svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>
-  private width: number
-  private height: number
+  //private width: number
+  //private height: number
   private nodes: Node[]
   private links: Link[]
 
   constructor(nodes: Node[], links: Link[]) {
-    this.width = window.innerWidth
-    this.height = 500 //window.innerHeight;
+    //this.width = window.innerWidth - 20
+    //this.height = window.innerHeight - 20
 
-    this.svg = d3.select('body') // Assuming you have a body tag in your HTML
+    d3.select("#network-container").selectAll("svg").remove();
+    this.svg = d3.select('#network-container')
       .append('svg')
-      .attr('width', this.width)
-      .attr('height', this.height)
+      .attr('width', window.innerWidth)
+      .attr('height', window.innerHeight)
 
     this.nodes = nodes
     this.links = links
     this.init()
   }
 
-  private init = (): void => {
+  private init = () : void => {
     // Create SVG element
     // this.svg = d3.select('body') // Assuming you have a body tag in your HTML
     //   .append('svg')
@@ -36,7 +37,7 @@ class NetworkRenderer {
     this.drawNetwork()
   }
 
-  drawNetwork = () => {
+  drawNetwork = () : void => {
     const svg = this.svg
     const nodes: Node[] = this.nodes
     const links: Link[] = this.links
@@ -46,9 +47,9 @@ class NetworkRenderer {
 
     // Create the graph layout
     const simulation = d3.forceSimulation<Node, Link>(nodes)
-      .force('link', d3.forceLink<Node, Link>(links).id(d => d.id))
-      .force('charge', d3.forceManyBody())
-      .force('center', d3.forceCenter(this.width / 2, this.height / 2))
+      .force('charge', d3.forceManyBody().strength(-6))
+      .force('link', d3.forceLink<Node, Link>(links).id(d => d.id).distance(d => d.value).strength(0.5))
+      .force('center', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2).strength(0.5))
       .on('tick', ticked)
 
     // Draw links
@@ -58,8 +59,9 @@ class NetworkRenderer {
       .data(links)
       .join('line')
       .attr('link-id', (d: Link) => `${d.source.id}-${d.target.id}`)
-      .attr('stroke-width', (d: Link) => Math.sqrt(d.value))
+      .attr('stroke-width', 1)
       .attr('stroke-opacity', (d: Link) => d.GetStrokeWidth())
+      .attr('stroke-length', (d: Link) => d.value)
 
     // Draw nodes
     const node = svg.append('g')
@@ -69,18 +71,14 @@ class NetworkRenderer {
       .data(nodes)
       .join('circle')
       .attr('node-id', d => d.id)
-      .attr('r', 7) // radius
+      .attr('r', 6) // radius
       .attr('fill', d => d.GetColor())
-
-    // Adds a tootltip with the node id
-    node.append('title')
-        .text(d => d.id)
 
     // Add labels
     const label = svg.selectAll('text')
       .data(nodes)
       .enter().append('text')
-      .attr('font-size', 10)
+      .attr('font-size', 6)
       .attr('font-family', 'sans-serif')
       .attr('text-anchor', 'middle')
       .attr('dominant-baseline', 'central')
@@ -106,6 +104,10 @@ class NetworkRenderer {
       node
         .attr('cx', (d: Node) => d.x!)
         .attr('cy', (d: Node) => d.y!)
+
+      node
+        .attr('cx', function(d: Node) { return d.x = Math.max(20, Math.min(window.innerWidth - 20, d.x!)) })
+        .attr('cy', function(d: Node) { return d.y = Math.max(20, Math.min(window.innerHeight - 20, d.y!)) });
     
       label
         .attr('x', (d: Node) => d.x!)
@@ -131,8 +133,8 @@ class NetworkRenderer {
 
   }
 
-  private handleResize = (): void => {
-    this.width = window.innerWidth
+  private handleResize = () : void => {
+    //this.width = window.innerWidth
     // Perform any additional tasks here...
     this.drawNetwork()
   }

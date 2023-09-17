@@ -5,10 +5,19 @@
   <title>Your App</title>
 </head>
 <body>
-  <!-- Your SVG or other containers go here -->
+  <div class="dropdown">
+    <button class="dropdown-btn">Generate network</button>
+    <div class="dropdown-content">
+      <a href="#" id="example-network">Example</a>
+      <a href="#" id="small-network">Small</a>
+      <a href="#" id="medium-network">Medium</a>
+      <a href="#" id="large-network">Large</a>
+    </div>
+  </div>
   <button id="runBfsButton">Run BFS</button>
 
-  <!-- Include your bundled JS file. Adjust the path based on your Webpack output settings. -->
+  <div id="network-container"></div>
+
   <script src="./bundle.js"></script>
 </body>
 </html>

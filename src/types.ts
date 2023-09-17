@@ -1,5 +1,12 @@
 import * as d3 from 'd3'
 
+export enum NetworkType {
+  Small = 'small',
+  Medium = 'medium',
+  Large = 'large',
+  Example = 'example'	
+}
+
 export enum NodeState {
   Undiscovered = 'undiscovered',
   Discovered = 'discovered',

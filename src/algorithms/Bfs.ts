@@ -7,7 +7,7 @@ class Bfs {
         this.delay = delay
     }
 
-    public FindShortestPath = async (nodes: Node[], start: number, end: number): Promise<void> => {
+    public FindShortestPath = async (nodes: Node[], start: number, end: number) : Promise<void> => {
         if (!nodes.length)
             return
 
