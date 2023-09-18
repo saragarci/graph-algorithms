@@ -7,32 +7,32 @@ class AdjacencyList {
     constructor(type: NetworkType) {
         this.adjacencyList = (type === NetworkType.Example)
             ? this.getExampleAdjacencyList()
-            : this.generateNetwork(type);
-        this.networkType = type;
+            : this.generateNetwork(type)
+        this.networkType = type
     }
 
-    public GetAdjacencyList = () : number[][] => this.adjacencyList;
+    public GetAdjacencyList = () : number[][] => this.adjacencyList
 
-    public GetNetworkType = () : NetworkType => this.networkType;
+    public GetNetworkType = () : NetworkType => this.networkType
 
     private generateNetwork = (type: NetworkType) : number[][] => {
-        const n = type === NetworkType.Small ? 10 : type === NetworkType.Medium ? 100 : 500;
+        const n = type === NetworkType.Small ? 10 : type === NetworkType.Medium ? 100 : 500
         const adjacencyList = [];
         for (let i = 0; i < n; i++) {
-            const row = new Array(n).fill(0);
-            adjacencyList.push(row);
+            const row = new Array(n).fill(0)
+            adjacencyList.push(row)
         }
 
         for (let i = 0; i < n; i++) {
             for (let j = i + 1; j < n; j++) {
                 if (type === NetworkType.Small) {
                     // For small, it's fully connected
-                    adjacencyList[i][j] = adjacencyList[j][i] = Math.ceil(Math.random() * 10);
+                    adjacencyList[i][j] = adjacencyList[j][i] = Math.ceil(Math.random() * 10)
                 } else {
                     // For medium and large, limit connections to 2-4
-                    const probability = type === NetworkType.Medium ? 0.01 : 0.001;
+                    const probability = type === NetworkType.Medium ? 0.01 : 0.001
                     if (Math.random() < probability) { // You can change this probability
-                        adjacencyList[i][j] = adjacencyList[j][i] = Math.ceil(Math.random() * 10);
+                        adjacencyList[i][j] = adjacencyList[j][i] = Math.ceil(Math.random() * 10)
                     }
                 }
             }
@@ -42,18 +42,18 @@ class AdjacencyList {
         // TO-DO: fixme
         if (type === NetworkType.Medium || type === NetworkType.Large) {
             for (let i = 0; i < n; i++) {
-                let connectedNodes = adjacencyList[i].filter(val => val > 0).length;
+                let connectedNodes = adjacencyList[i].filter(val => val > 0).length
                 while (connectedNodes < 2) {
-                    let j = Math.floor(Math.random() * n);
+                    let j = Math.floor(Math.random() * n)
                     if (j !== i && adjacencyList[i][j] === 0) {
-                        adjacencyList[i][j] = adjacencyList[j][i] = Math.ceil(Math.random() * 10);
-                        connectedNodes++;
+                        adjacencyList[i][j] = adjacencyList[j][i] = Math.ceil(Math.random() * 10)
+                        connectedNodes++
                     }
                 }
             }
         }
 
-        return adjacencyList;
+        return adjacencyList
     } 
 
     private getExampleAdjacencyList = () : number[][] => {

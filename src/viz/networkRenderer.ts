@@ -11,7 +11,7 @@ class NetworkRenderer {
   private centerStrength: number = 0.5
 
   constructor(network: Network) {
-    d3.select("#network-container").selectAll("svg").remove()
+    d3.select('#network-container').selectAll('svg').remove()
     this.svg = d3.select('#network-container')
       .append('svg')
       .attr('width', window.innerWidth)
@@ -37,8 +37,8 @@ class NetworkRenderer {
     }
 
     if (type == NetworkType.Large) {
-      this.chargeStrength = -6
-      this.linkStrength = 0.5
+      this.chargeStrength = -8
+      this.linkStrength = 0.35
       this.centerStrength = 0.5
     }
   }
@@ -71,7 +71,7 @@ class NetworkRenderer {
       .join('line')
       .attr('link-id', (d: Link) => `${d.source.id}-${d.target.id}`)
       .attr('stroke-width', 1)
-      .attr('stroke-opacity', (d: Link) => d.GetStrokeWidth())
+      .attr('stroke-opacity', (d: Link) => d.GetStrokeOpacity())
       .attr('stroke-length', (d: Link) => d.value)
 
     // Draw nodes
@@ -145,8 +145,6 @@ class NetworkRenderer {
   }
 
   private handleResize = () : void => {
-    //this.width = window.innerWidth
-    // Perform any additional tasks here...
     this.drawNetwork()
   }
 }

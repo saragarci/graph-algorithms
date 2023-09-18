@@ -1,15 +1,13 @@
 import AdjacencyList from './utils/adjacencyList'
 import Network from './utils/network'
 import NetworkRenderer from './viz/networkRenderer'
-import { Link, NetworkType, Node } from './types'
+import { NetworkType } from './types'
 import Bfs from './algorithms/Bfs'
 
 class App {
-  nodes: Node[] = []
-  links: Link[] = []
-  adjacencyList: AdjacencyList = new AdjacencyList(NetworkType.Example)
-  network: Network = new Network(this.adjacencyList)
-  delay: number = 100
+  private adjacencyList: AdjacencyList = new AdjacencyList(NetworkType.Example)
+  private network: Network = new Network(this.adjacencyList)
+  private delay: number = 100
 
   constructor() {
     this.renderNetwork()
@@ -17,7 +15,6 @@ class App {
   }
 
   private renderNetwork = () : void => {
-    console.log('rendering network'	)
     new NetworkRenderer(this.network)
   }
 
@@ -36,10 +33,11 @@ class App {
   
       // BFS
       const runBfsButton = document.getElementById('runBfsButton')
-      runBfsButton?.addEventListener('click', () => {
+      runBfsButton?.addEventListener('click', async () => {
         const bfs = new Bfs(self.delay)
-        bfs.FindShortestPath(self.network.GetNodes(), 0, 5)
-          .then(() => self.network.DrawShortestPath(0, 5))
+        self.network.SetStartAndEndNodes(0, 5)
+        await bfs.FindShortestPath(self.network.GetNodes(), 0, 5)
+        self.network.DrawShortestPath(0, 5)
       })
     })
   }

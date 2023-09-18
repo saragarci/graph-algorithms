@@ -23,6 +23,11 @@ class Network {
                     const link: Link = new Link(source, target, value)
                     this.links.push(link)
                     source.children.set(target, link)
+
+                    // Add the link to the target's children
+                    const reverseLink: Link = new Link(target, source, value)
+                    target.children.set(source, reverseLink)
+                    this.links.push(reverseLink)
                 }
             }
         }
@@ -36,7 +41,7 @@ class Network {
 
     public GetType = () : NetworkType => this.type
 
-    public DrawShortestPath = (start: number, end: number) : void => {
+    public SetStartAndEndNodes = (start: number, end: number) : void => { 
         const startNode = this.nodes[start]
         startNode.isStart = true
         startNode.Update()
@@ -44,7 +49,11 @@ class Network {
         const endNode = this.nodes[end]
         endNode.isEnd = true
         endNode.Update()
-        
+    }
+
+    public DrawShortestPath = (start: number, end: number) : void => {
+        const startNode = this.nodes[start]
+        const endNode = this.nodes[end]
         let currentNode = endNode
         while (currentNode && currentNode !== startNode) {
             // update node

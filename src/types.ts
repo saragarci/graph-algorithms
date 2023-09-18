@@ -37,7 +37,7 @@ export interface Link extends d3.SimulationLinkDatum<Node> {
   state: LinkState
   isPath: boolean
   GetColor(): string
-  GetStrokeWidth(): number
+  GetStrokeOpacity(): number
   Update(): void
 }
 
@@ -63,7 +63,7 @@ export class Node implements Node {
 
   public GetColor = () : string => {
       if (this.isStart) return 'yellow'
-      if (this.isEnd) return 'pink'
+      if (this.isEnd) return 'green'
       if (this.isPath) return 'orange'
       switch (this.state) {
         case NodeState.Undiscovered:
@@ -101,11 +101,11 @@ export class Link implements Link {
 
   public GetColor = () : string => this.isPath ? 'orange' : '#999'	
 
-  public GetStrokeWidth = () : number => this.state === LinkState.Undiscovered ? 0.3 : 1
+  public GetStrokeOpacity = () : number => this.state === LinkState.Undiscovered ? 0.1 : 1
 
   public Update = () : void => {
       const link = d3.select(`line[link-id='${this.source.id}-${this.target.id}']`)
-      link?.attr('stroke-opacity', this.GetStrokeWidth())
+      link?.attr('stroke-opacity', this.GetStrokeOpacity())
       link?.attr('stroke', this.GetColor())
   }
 }

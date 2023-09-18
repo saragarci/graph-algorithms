@@ -1,7 +1,7 @@
 import { LinkState, Node, NodeState } from '../types'
 
 class Bfs {
-    delay: number
+    private delay: number
 
     constructor(delay: number) {
         this.delay = delay
