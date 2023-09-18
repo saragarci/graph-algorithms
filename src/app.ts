@@ -3,6 +3,7 @@ import Network from './utils/network'
 import NetworkRenderer from './viz/networkRenderer'
 import { NetworkType } from './types'
 import Bfs from './algorithms/Bfs'
+import Dfs from './algorithms/Dfs'
 
 class App {
   private adjacencyList: AdjacencyList = new AdjacencyList(NetworkType.Example)
@@ -32,11 +33,20 @@ class App {
       largeNetworkBtn?.addEventListener('click', () => { self.createNetwork(NetworkType.Large) })
   
       // BFS
-      const runBfsButton = document.getElementById('runBfsButton')
+      const runBfsButton = document.getElementById('run-bfs')
       runBfsButton?.addEventListener('click', async () => {
         const bfs = new Bfs(self.delay)
         self.network.SetStartAndEndNodes(0, 5)
         await bfs.FindShortestPath(self.network.GetNodes(), 0, 5)
+        self.network.DrawShortestPath(0, 5)
+      })
+
+      // DFS
+      const runDfsButton = document.getElementById('run-dfs')
+      runDfsButton?.addEventListener('click', async () => {
+        const dfs = new Dfs(self.delay)
+        self.network.SetStartAndEndNodes(0, 5)
+        await dfs.FindShortestPath(self.network.GetNodes(), 0, 5)
         self.network.DrawShortestPath(0, 5)
       })
     })

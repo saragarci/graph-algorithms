@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Your App</title>
-</head>
-<body>
-  <div class="dropdown">
-    <button class="dropdown-btn">Generate network</button>
-    <div class="dropdown-content">
-      <a href="#" id="example-network">Example</a>
-      <a href="#" id="small-network">Small</a>
-      <a href="#" id="medium-network">Medium</a>
-      <a href="#" id="large-network">Large</a>
+  <head>
+    <meta charset="UTF-8">
+    <title>Your App</title>
+  </head>
+  <body>
+    <div>
+      <div class="dropdown">
+        <button class="dropdown-btn">Generate network</button>
+        <div class="dropdown-content">
+          <a href="#" id="example-network">Example</a>
+          <a href="#" id="small-network">Small</a>
+          <a href="#" id="medium-network">Medium</a>
+          <a href="#" id="large-network">Large</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropdown-btn">Run algorithm</button>
+        <div class="dropdown-content">
+          <a href="#" id="run-bfs">BFS</a>
+          <a href="#" id="run-dfs">DFS</a>
+        </div>
+      </div>
     </div>
-  </div>
-  <button id="runBfsButton">Run BFS</button>
-
-  <div id="network-container"></div>
-
-  <script src="./bundle.js"></script>
-</body>
+    <div id="network-container"></div>
+    <script src="./bundle.js"></script>
+  </body>
 </html>
