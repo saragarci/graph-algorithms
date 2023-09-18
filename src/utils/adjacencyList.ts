@@ -1,15 +1,19 @@
 import { NetworkType } from '../types'
 
 class AdjacencyList {
-    adjacencyList: number[][]
+    private adjacencyList: number[][]
+    private networkType: NetworkType
 
     constructor(type: NetworkType) {
         this.adjacencyList = (type === NetworkType.Example)
             ? this.getExampleAdjacencyList()
             : this.generateNetwork(type);
+        this.networkType = type;
     }
 
     public GetAdjacencyList = () : number[][] => this.adjacencyList;
+
+    public GetNetworkType = () : NetworkType => this.networkType;
 
     private generateNetwork = (type: NetworkType) : number[][] => {
         const n = type === NetworkType.Small ? 10 : type === NetworkType.Medium ? 100 : 500;

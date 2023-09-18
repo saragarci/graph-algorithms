@@ -1,55 +1,66 @@
 import * as d3 from 'd3'
-import { Node, Link } from '../types'
+import { Node, Link, NetworkType } from '../types'
+import Network from '../utils/network'
 
 class NetworkRenderer {
   private svg: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>
-  //private width: number
-  //private height: number
   private nodes: Node[]
   private links: Link[]
+  private chargeStrength: number = -7
+  private linkStrength: number = 0.5
+  private centerStrength: number = 0.5
 
-  constructor(nodes: Node[], links: Link[]) {
-    //this.width = window.innerWidth - 20
-    //this.height = window.innerHeight - 20
-
-    d3.select("#network-container").selectAll("svg").remove();
+  constructor(network: Network) {
+    d3.select("#network-container").selectAll("svg").remove()
     this.svg = d3.select('#network-container')
       .append('svg')
       .attr('width', window.innerWidth)
       .attr('height', window.innerHeight)
 
-    this.nodes = nodes
-    this.links = links
+    this.nodes = network.GetNodes()
+    this.links = network.GetLinks()
+    this.setStrengths(network.GetType())
     this.init()
+  }
+  
+  private setStrengths = (type: NetworkType) : void => { 
+    if (type == NetworkType.Example || type == NetworkType.Small) {
+      this.chargeStrength = -500
+      this.linkStrength = 0.01
+      this.centerStrength = 0.5
+    }
+
+    if (type == NetworkType.Medium) {
+      this.chargeStrength = -32
+      this.linkStrength = 0.35
+      this.centerStrength = 0.5
+    }
+
+    if (type == NetworkType.Large) {
+      this.chargeStrength = -6
+      this.linkStrength = 0.5
+      this.centerStrength = 0.5
+    }
   }
 
   private init = () : void => {
-    // Create SVG element
-    // this.svg = d3.select('body') // Assuming you have a body tag in your HTML
-    //   .append('svg')
-    //   .attr('width', this.width)
-    //   .attr('height', this.height);
-
-    // Listen to window resize events
     window.addEventListener('resize', () => this.handleResize())
-    
-    // Initial drawing
     this.drawNetwork()
   }
 
-  drawNetwork = () : void => {
+  private drawNetwork = () : void => {
     const svg = this.svg
     const nodes: Node[] = this.nodes
     const links: Link[] = this.links
 
     // Clear SVG before drawing
-    svg.selectAll('*').remove();
+    svg.selectAll('*').remove()
 
     // Create the graph layout
     const simulation = d3.forceSimulation<Node, Link>(nodes)
-      .force('charge', d3.forceManyBody().strength(-6))
-      .force('link', d3.forceLink<Node, Link>(links).id(d => d.id).distance(d => d.value).strength(0.5))
-      .force('center', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2).strength(0.5))
+      .force('charge', d3.forceManyBody().strength(this.chargeStrength))
+      .force('link', d3.forceLink<Node, Link>(links).id(d => d.id).distance(d => d.value).strength(this.linkStrength))
+      .force('center', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2).strength(this.centerStrength))
       .on('tick', ticked)
 
     // Draw links

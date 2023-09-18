@@ -1,19 +1,22 @@
-import { Link, Node } from '../types'
+import { Link, NetworkType, Node } from '../types'
+import AdjacencyList from './adjacencyList'
 
 class Network {
-    nodes: Node[] = []
-    links: Link[] = []
+    private nodes: Node[] = []
+    private links: Link[] = []
+    private type: NetworkType = NetworkType.Example
 
-    constructor(adjacencyList: number[][]) {
+    constructor(adjacencyList: AdjacencyList) {
         // Create nodes based on the length of the adjacency list
-        for (let i = 0; i < adjacencyList.length; i++) {
+        const adjacencyListMatrix = adjacencyList.GetAdjacencyList()
+        for (let i = 0; i < adjacencyListMatrix.length; i++) {
             this.nodes.push(new Node(i))
         }
   
         // Create links based on the adjacency list
-        for (let i = 0; i < adjacencyList.length; i++) {
-            for (let j = i+1; j < adjacencyList[i].length; j++) {
-                const value: number = adjacencyList[i][j]
+        for (let i = 0; i < adjacencyListMatrix.length; i++) {
+            for (let j = i+1; j < adjacencyListMatrix[i].length; j++) {
+                const value: number = adjacencyListMatrix[i][j]
                 if (value) {
                     const source: Node = this.nodes[i]
                     const target: Node = this.nodes[j]
@@ -23,9 +26,17 @@ class Network {
                 }
             }
         }
+
+        this.type = adjacencyList.GetNetworkType()
     }
 
-    public DrawShortestPath = (start: number, end: number) => {
+    public GetNodes = () : Node[] => this.nodes
+    
+    public GetLinks = () : Link[] => this.links
+
+    public GetType = () : NetworkType => this.type
+
+    public DrawShortestPath = (start: number, end: number) : void => {
         const startNode = this.nodes[start]
         startNode.isStart = true
         startNode.Update()

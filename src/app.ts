@@ -8,7 +8,7 @@ class App {
   nodes: Node[] = []
   links: Link[] = []
   adjacencyList: AdjacencyList = new AdjacencyList(NetworkType.Example)
-  network: Network = new Network(this.adjacencyList.GetAdjacencyList())
+  network: Network = new Network(this.adjacencyList)
   delay: number = 100
 
   constructor() {
@@ -17,7 +17,8 @@ class App {
   }
 
   private renderNetwork = () : void => {
-    new NetworkRenderer(this.network.nodes, this.network.links)
+    console.log('rendering network'	)
+    new NetworkRenderer(this.network)
   }
 
   private setUpButtons = () : void => {
@@ -37,7 +38,7 @@ class App {
       const runBfsButton = document.getElementById('runBfsButton')
       runBfsButton?.addEventListener('click', () => {
         const bfs = new Bfs(self.delay)
-        bfs.FindShortestPath(self.network.nodes, 0, 5)
+        bfs.FindShortestPath(self.network.GetNodes(), 0, 5)
           .then(() => self.network.DrawShortestPath(0, 5))
       })
     })
@@ -45,7 +46,7 @@ class App {
 
   private createNetwork = (type: NetworkType) : void => {
     this.adjacencyList = new AdjacencyList(type)
-    this.network = new Network(this.adjacencyList.GetAdjacencyList())
+    this.network = new Network(this.adjacencyList)
     this.renderNetwork()
   }
 }
