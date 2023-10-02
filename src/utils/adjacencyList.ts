@@ -4,11 +4,9 @@ class AdjacencyList {
     private adjacencyList: number[][]
     private networkType: NetworkType
 
-    constructor(type: NetworkType) {
-        this.adjacencyList = (type === NetworkType.Example)
-            ? this.getExampleAdjacencyList()
-            : this.generateNetwork(type)
+    constructor(type: NetworkType, list?: number[][]) {
         this.networkType = type
+        this.adjacencyList = (list !== undefined) ? list : this.generateNetwork(type)
     }
 
     public GetAdjacencyList = () : number[][] => this.adjacencyList
@@ -17,7 +15,7 @@ class AdjacencyList {
 
     private generateNetwork = (type: NetworkType) : number[][] => {
         const n = type === NetworkType.Small ? 10 : type === NetworkType.Medium ? 100 : 500
-        const adjacencyList = [];
+        const adjacencyList = []
         for (let i = 0; i < n; i++) {
             const row = new Array(n).fill(0)
             adjacencyList.push(row)
@@ -54,19 +52,6 @@ class AdjacencyList {
         }
 
         return adjacencyList
-    } 
-
-    private getExampleAdjacencyList = () : number[][] => {
-        return [
-            [0, 1, 0, 0, 0, 0, 1, 1],
-            [1, 0, 1, 0, 1, 0, 1, 0],
-            [0, 1, 0, 1, 1, 0, 0, 0],
-            [0, 0, 1, 0, 1, 0, 0, 0],
-            [0, 1, 1, 1, 0, 1, 0, 0],
-            [0, 0, 0, 0, 1, 0, 0, 0],
-            [1, 1, 0, 0, 0, 0, 0, 0],
-            [1, 0, 0, 0, 0, 0, 0, 0]
-        ]
     }
 }
 

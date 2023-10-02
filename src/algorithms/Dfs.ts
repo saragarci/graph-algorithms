@@ -8,44 +8,36 @@ class Dfs {
     }
 
     public FindShortestPath = async (nodes: Node[], start: number, end: number) : Promise<void> => {
-        if (!nodes.length)
+        if (!nodes.length || start === end)
             return
-
-        const startNode: Node = nodes.at(start)!
-        startNode.state = NodeState.Discovered
-        startNode.Update()
         
+        const currentNode : Node = nodes.at(start)!
+        currentNode.state = NodeState.Discovered
+        currentNode.Update()
         await new Promise(resolve => setTimeout(resolve, this.delay))
-        const stack: Node[] = [startNode]
-        while (stack.length) {
-            const currentNode: Node = stack.pop()!
-            if (currentNode.id === end) {
-                currentNode.state = NodeState.Processed
-                currentNode.Update()
+
+        // PROCESS NODE EARLY
+        for (const [targetNode, link] of currentNode.children.entries()) {
+            if (targetNode.state === NodeState.Undiscovered) {
+                // Update node
+                targetNode.parent = currentNode
+
+                // PROCESS EDGE
+                link.state = LinkState.Discovered
+                link.Update()
                 await new Promise(resolve => setTimeout(resolve, this.delay))
-                return
+
+                await this.FindShortestPath(nodes, targetNode.id, end)
             }
 
-            for (const [targetNode, link] of currentNode.children.entries()) {
-                if (targetNode.state === NodeState.Undiscovered) {
-                    // update link state
-                    link.state = LinkState.Discovered
-                    link.Update()
-                    
-                    // update node state
-                    targetNode.state = NodeState.Discovered
-                    targetNode.parent = currentNode
-                    targetNode.Update()
-                    
-                    stack.push(targetNode)
-                    await new Promise(resolve => setTimeout(resolve, this.delay))
-                }
-            }
-            
-            currentNode.state = NodeState.Processed
-            currentNode.Update()
-            await new Promise(resolve => setTimeout(resolve, this.delay))
+            if (targetNode.id == end)
+                return
         }
+
+        // PROCESS NODE LATE
+        currentNode.state = NodeState.Processed
+        currentNode.Update()
+        await new Promise(resolve => setTimeout(resolve, this.delay))
     }
 }
 

@@ -51,14 +51,17 @@ class Network {
         endNode.Update()
     }
 
-    public DrawShortestPath = (start: number, end: number) : void => {
+    public DrawShortestPath = (start: number, end: number) : Number[] => {
         const startNode = this.nodes[start]
         const endNode = this.nodes[end]
         let currentNode = endNode
+        
+        let path: Number[] = []
         while (currentNode && currentNode !== startNode) {
             // update node
             currentNode.isPath = true
             currentNode.Update()
+            path.push(currentNode.id)
             
             const parent = currentNode.parent
             if (parent) {
@@ -71,9 +74,11 @@ class Network {
 
                 currentNode = parent
             } else {
-                return
+                break
             }
         }
+        path.push(startNode.id)
+        return path.reverse()
     }
 }
 
