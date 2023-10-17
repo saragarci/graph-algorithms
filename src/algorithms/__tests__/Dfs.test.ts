@@ -47,7 +47,7 @@ describe('Dfs Tests', () => {
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
-        const expectedShortestPath: Number[] = [0, 1, 2, 4, 6]
+        const expectedShortestPath: Number[] = [0, 1, 2, 3, 5, 6]
         expect(shortestPath).toStrictEqual(expectedShortestPath)
     })
 
@@ -62,7 +62,7 @@ describe('Dfs Tests', () => {
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
-        const expectedShortestPath: Number[] = [0, 1, 2, 3, 4, 5, 14]
+        const expectedShortestPath: Number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14]
         expect(shortestPath).toStrictEqual(expectedShortestPath)
     })
 
@@ -122,7 +122,7 @@ describe('Dfs Tests', () => {
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
-        const expectedShortestPath: Number[] = [0, 1, 3, 2, 4, 5, 6, 7, 8, 10, 12, 14]
+        const expectedShortestPath: Number[] = [0, 1, 3, 2, 4, 5, 6, 7, 8, 10, 12, 13, 14]
         expect(shortestPath).toStrictEqual(expectedShortestPath)
     })
 
@@ -137,7 +137,7 @@ describe('Dfs Tests', () => {
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
-        const expectedShortestPath: Number[] = [0, 1, 3, 7, 15, 9, 4, 10, 16, 19, 13, 27, 29] 
+        const expectedShortestPath: Number[] = [0, 1, 3, 7, 15, 9, 4, 10, 16, 19, 13, 6, 2, 5, 11, 20, 14, 8, 17, 26, 12, 25, 29] 
         expect(shortestPath).toStrictEqual(expectedShortestPath)
     })
 })

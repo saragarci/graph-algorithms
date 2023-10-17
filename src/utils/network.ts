@@ -15,7 +15,7 @@ class Network {
   
         // Create links based on the adjacency list
         for (let i = 0; i < adjacencyListMatrix.length; i++) {
-            for (let j = i+1; j < adjacencyListMatrix[i].length; j++) {
+            for (let j = 0; j < adjacencyListMatrix[i].length; j++) {
                 const value: number = adjacencyListMatrix[i][j]
                 if (value) {
                     const source: Node = this.nodes[i]
@@ -23,11 +23,6 @@ class Network {
                     const link: Link = new Link(source, target, value)
                     this.links.push(link)
                     source.children.set(target, link)
-
-                    // Add the link to the target's children
-                    const reverseLink: Link = new Link(target, source, value)
-                    target.children.set(source, reverseLink)
-                    this.links.push(reverseLink)
                 }
             }
         }
@@ -52,12 +47,9 @@ class Network {
     }
 
     public DrawShortestPath = (start: number, end: number) : Number[] => {
-        const startNode = this.nodes[start]
-        const endNode = this.nodes[end]
-        let currentNode = endNode
-        
+        let currentNode: Node = this.nodes[end]
         let path: Number[] = []
-        while (currentNode && currentNode !== startNode) {
+        while (currentNode) {
             // update node
             currentNode.isPath = true
             currentNode.Update()
@@ -71,13 +63,11 @@ class Network {
                     link.isPath = true
                     link.Update()
                 }
-
                 currentNode = parent
             } else {
                 break
             }
         }
-        path.push(startNode.id)
         return path.reverse()
     }
 }

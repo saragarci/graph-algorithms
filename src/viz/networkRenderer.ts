@@ -23,8 +23,14 @@ class NetworkRenderer {
     this.init()
   }
   
-  private setStrengths = (type: NetworkType) : void => { 
-    if (type == NetworkType.Example || type == NetworkType.Small) {
+  private setStrengths = (type: NetworkType) : void => {
+    if (type == NetworkType.Example) {
+      this.chargeStrength = -1000
+      this.linkStrength = 1
+      this.centerStrength = 0.9
+    }
+
+    if (type == NetworkType.Small) {
       this.chargeStrength = -500
       this.linkStrength = 0.01
       this.centerStrength = 0.5
@@ -59,7 +65,7 @@ class NetworkRenderer {
     // Create the graph layout
     const simulation = d3.forceSimulation<Node, Link>(nodes)
       .force('charge', d3.forceManyBody().strength(this.chargeStrength))
-      .force('link', d3.forceLink<Node, Link>(links).id(d => d.id).distance(d => d.value).strength(this.linkStrength))
+      .force('link', d3.forceLink<Node, Link>(links).id(d => d.id).distance(d => Math.sqrt(d.value)).strength(this.linkStrength))
       .force('center', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2).strength(this.centerStrength))
       .on('tick', ticked)
 
@@ -70,9 +76,9 @@ class NetworkRenderer {
       .data(links)
       .join('line')
       .attr('link-id', (d: Link) => `${d.source.id}-${d.target.id}`)
-      .attr('stroke-width', 1)
+      .attr('stroke-width',  (d: Link) => Math.sqrt(d.value))
       .attr('stroke-opacity', (d: Link) => d.GetStrokeOpacity())
-      .attr('stroke-length', (d: Link) => d.value)
+      //.attr('stroke-length', (d: Link) => d.value)
 
     // Draw nodes
     const node = svg.append('g')
@@ -96,6 +102,16 @@ class NetworkRenderer {
       .attr('fill', 'black')
       .text(d => d.id)
       .attr('label-id', d => d.id)
+
+    const linkLabels = svg.append("g")
+      .attr("class", "link-labels")
+      .selectAll(".link-label")
+      .data(links)
+      .enter().append("text")
+      .attr("font-family", "sans-serif")
+      .attr("font-size", 6)
+      .attr("fill", "white")
+      .text(d => d.value)
 
     // Add a drag behavior.
     node.call(d3.drag<SVGCircleElement, Node, unknown>()
@@ -123,6 +139,10 @@ class NetworkRenderer {
       label
         .attr('x', (d: Node) => d.x!)
         .attr('y', (d: Node) => d.y!)
+
+      linkLabels
+        .attr("x", (d: Link) => (d.source.x! + d.target.x!) / 2)
+        .attr("y", (d: Link) => (d.source.y! + d.target.y!) / 2);
     }
 
     function dragStarted(event: d3.D3DragEvent<SVGCircleElement, Node, undefined>, d: Node) {

@@ -7,7 +7,7 @@ import Dfs from './algorithms/Dfs'
 import { Examples } from './utils/exampleAdjacencyList'
 
 class App {
-  private adjacencyList: AdjacencyList = new AdjacencyList(NetworkType.Example, Examples.Example1)
+  private adjacencyList: AdjacencyList = new AdjacencyList(NetworkType.Example, Examples.Example9)
   private network: Network = new Network(this.adjacencyList)
   private delay: number = 100
 
@@ -54,7 +54,7 @@ class App {
   }
 
   private createNetwork = (type: NetworkType) : void => {
-    this.adjacencyList = new AdjacencyList(type, type === NetworkType.Example ? Examples.Example2 : undefined)
+    this.adjacencyList = new AdjacencyList(type, type === NetworkType.Example ? Examples.Example9 : undefined)
     this.network = new Network(this.adjacencyList)
     this.renderNetwork()
   }
