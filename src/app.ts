@@ -4,12 +4,13 @@ import NetworkRenderer from './viz/networkRenderer'
 import { NetworkType } from './types'
 import Bfs from './algorithms/Bfs'
 import Dfs from './algorithms/Dfs'
+import Dijkstra from './algorithms/Dijkstra'
 import { Examples } from './utils/exampleAdjacencyList'
 
 class App {
-  private adjacencyList: AdjacencyList = new AdjacencyList(NetworkType.Example, Examples.Example9)
+  private adjacencyList: AdjacencyList = new AdjacencyList(NetworkType.Example, Examples.Example10)
   private network: Network = new Network(this.adjacencyList)
-  private delay: number = 100
+  private delay: number = 10
 
   constructor() {
     this.renderNetwork()
@@ -50,11 +51,20 @@ class App {
         await dfs.FindShortestPath(self.network.GetNodes(), 0, 5)
         self.network.DrawShortestPath(0, 5)
       })
+
+      // Dijkstra
+      const runDijkstraButton = document.getElementById('run-dijkstra')
+      runDijkstraButton?.addEventListener('click', async () => {
+        const dijkstra = new Dijkstra(self.delay)
+        self.network.SetStartAndEndNodes(0, 5)
+        await dijkstra.FindShortestPath(self.network.GetNodes(), 0, 5)
+        self.network.DrawShortestPath(0, 5)
+      })
     })
   }
 
   private createNetwork = (type: NetworkType) : void => {
-    this.adjacencyList = new AdjacencyList(type, type === NetworkType.Example ? Examples.Example9 : undefined)
+    this.adjacencyList = new AdjacencyList(type, type === NetworkType.Example ? Examples.Example10 : undefined)
     this.network = new Network(this.adjacencyList)
     this.renderNetwork()
   }

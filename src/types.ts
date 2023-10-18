@@ -109,3 +109,7 @@ export class Link implements Link {
       link?.attr('stroke', this.GetColor())
   }
 }
+
+export interface PriorityQueueElement {
+  value: number
+}
