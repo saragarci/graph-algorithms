@@ -1,3 +1,5 @@
+// Code taken from: https://www.geeksforgeeks.org/implementation-priority-queue-javascript/
+
 import { PriorityQueueElement } from '../types'
 
 class PriorityQueue<T extends PriorityQueueElement> {
