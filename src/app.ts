@@ -5,6 +5,7 @@ import { NetworkType } from './types'
 import Bfs from './algorithms/Bfs'
 import Dfs from './algorithms/Dfs'
 import Dijkstra from './algorithms/Dijkstra'
+import Prim from './algorithms/Prim'
 import { Examples } from './utils/exampleAdjacencyList'
 
 class App {
@@ -49,6 +50,15 @@ class App {
         const dfs = new Dfs(self.delay)
         self.network.SetStartAndEndNodes(0, 5)
         await dfs.FindShortestPath(self.network.GetNodes(), 0, 5)
+        self.network.DrawShortestPath(0, 5)
+      })
+
+      // Prim
+      const runPrimButton = document.getElementById('run-prim')
+      runPrimButton?.addEventListener('click', async () => {
+        const prim = new Prim(self.delay)
+        self.network.SetStartAndEndNodes(0, 5)
+        await prim.FindShortestPath(self.network.GetNodes(), 0, 5)
         self.network.DrawShortestPath(0, 5)
       })
 
