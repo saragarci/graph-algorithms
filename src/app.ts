@@ -7,6 +7,7 @@ import Dfs from './algorithms/Dfs'
 import Dijkstra from './algorithms/Dijkstra'
 import Prim from './algorithms/Prim'
 import { Examples } from './utils/exampleAdjacencyList'
+import Kruskal from './algorithms/Kruskal'
 
 class App {
   private adjacencyList: AdjacencyList = new AdjacencyList(NetworkType.Example, Examples.Example10)
@@ -40,7 +41,7 @@ class App {
       runBfsButton?.addEventListener('click', async () => {
         const bfs = new Bfs(self.delay)
         self.network.SetStartAndEndNodes(0, 5)
-        await bfs.FindShortestPath(self.network.GetNodes(), 0, 5)
+        await bfs.FindShortestPath(self.network.GetNodes(), self.network.GetLinks(), 0, 5)
         self.network.DrawShortestPath(0, 5)
       })
 
@@ -49,7 +50,7 @@ class App {
       runDfsButton?.addEventListener('click', async () => {
         const dfs = new Dfs(self.delay)
         self.network.SetStartAndEndNodes(0, 5)
-        await dfs.FindShortestPath(self.network.GetNodes(), 0, 5)
+        await dfs.FindShortestPath(self.network.GetNodes(), self.network.GetLinks(), 0, 5)
         self.network.DrawShortestPath(0, 5)
       })
 
@@ -58,7 +59,16 @@ class App {
       runPrimButton?.addEventListener('click', async () => {
         const prim = new Prim(self.delay)
         self.network.SetStartAndEndNodes(0, 5)
-        await prim.FindShortestPath(self.network.GetNodes(), 0, 5)
+        await prim.FindShortestPath(self.network.GetNodes(), self.network.GetLinks(), 0, 5)
+        self.network.DrawShortestPath(0, 5)
+      })
+
+      // Kruskal
+      const runKruskalButton = document.getElementById('run-kruskal')
+      runKruskalButton?.addEventListener('click', async () => {
+        const kruskal = new Kruskal(self.delay)
+        self.network.SetStartAndEndNodes(0, 5)
+        await kruskal.FindShortestPath(self.network.GetNodes(), self.network.GetLinks(), 0, 5)
         self.network.DrawShortestPath(0, 5)
       })
 
@@ -67,7 +77,7 @@ class App {
       runDijkstraButton?.addEventListener('click', async () => {
         const dijkstra = new Dijkstra(self.delay)
         self.network.SetStartAndEndNodes(0, 5)
-        await dijkstra.FindShortestPath(self.network.GetNodes(), 0, 5)
+        await dijkstra.FindShortestPath(self.network.GetNodes(), self.network.GetLinks(), 0, 5)
         self.network.DrawShortestPath(0, 5)
       })
     })

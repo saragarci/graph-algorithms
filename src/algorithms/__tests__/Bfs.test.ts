@@ -28,7 +28,7 @@ describe('Bfs Tests', () => {
         const end = 5
 
         // Act
-        await bfs.FindShortestPath(network.GetNodes(), start, end)
+        await bfs.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
 
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -43,7 +43,7 @@ describe('Bfs Tests', () => {
         const end = 6
         
         // Act
-        await bfs.FindShortestPath(network.GetNodes(), start, end)
+        await bfs.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -58,7 +58,7 @@ describe('Bfs Tests', () => {
         const end = 14
         
         // Act
-        await bfs.FindShortestPath(network.GetNodes(), start, end)
+        await bfs.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -73,7 +73,7 @@ describe('Bfs Tests', () => {
         const end = 14
         
         // Act
-        await bfs.FindShortestPath(network.GetNodes(), start, end)
+        await bfs.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -88,7 +88,7 @@ describe('Bfs Tests', () => {
         const end = 1
         
         // Act
-        await bfs.FindShortestPath(network.GetNodes(), start, end)
+        await bfs.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -103,7 +103,7 @@ describe('Bfs Tests', () => {
         const end = 0
         
         // Act
-        await bfs.FindShortestPath(network.GetNodes(), start, end)
+        await bfs.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -118,7 +118,7 @@ describe('Bfs Tests', () => {
         const end = 14
         
         // Act
-        await bfs.FindShortestPath(network.GetNodes(), start, end)
+        await bfs.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -133,7 +133,7 @@ describe('Bfs Tests', () => {
         const end = 29
         
         // Act
-        await bfs.FindShortestPath(network.GetNodes(), start, end)
+        await bfs.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)

@@ -1,4 +1,4 @@
-import { LinkState, Node, NodeState } from '../types'
+import { Link, LinkState, Node, NodeState } from '../types'
 
 class Dfs {
     private delay: number
@@ -7,7 +7,7 @@ class Dfs {
         this.delay = delay
     }
 
-    public FindShortestPath = async (nodes: Node[], start: number, end: number) : Promise<void> => {
+    public FindShortestPath = async (nodes: Node[], links: Link[], start: number, end: number) : Promise<void> => {
         const currentNode : Node = nodes.at(start)!
         
         if (currentNode.state !== NodeState.Undiscovered)
@@ -29,7 +29,7 @@ class Dfs {
 
                 // Update node
                 targetNode.parent = currentNode
-                await this.FindShortestPath(nodes, targetNode.id, end)
+                await this.FindShortestPath(nodes, links, targetNode.id, end)
             }
         }
 

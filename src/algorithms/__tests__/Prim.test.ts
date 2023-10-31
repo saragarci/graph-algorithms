@@ -28,7 +28,7 @@ describe('Prim Tests', () => {
         const end = 5
 
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
 
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -43,7 +43,7 @@ describe('Prim Tests', () => {
         const end = 6
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -58,7 +58,7 @@ describe('Prim Tests', () => {
         const end = 14
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -73,7 +73,7 @@ describe('Prim Tests', () => {
         const end = 14
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -88,7 +88,7 @@ describe('Prim Tests', () => {
         const end = 1
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -103,7 +103,7 @@ describe('Prim Tests', () => {
         const end = 0
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -118,7 +118,7 @@ describe('Prim Tests', () => {
         const end = 14
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -133,7 +133,7 @@ describe('Prim Tests', () => {
         const end = 15
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -148,7 +148,7 @@ describe('Prim Tests', () => {
         const end = 16
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -163,7 +163,7 @@ describe('Prim Tests', () => {
         const end = 17
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -178,7 +178,7 @@ describe('Prim Tests', () => {
         const end = 18
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -193,7 +193,7 @@ describe('Prim Tests', () => {
         const end = 19
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -208,7 +208,7 @@ describe('Prim Tests', () => {
         const end = 20
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -223,7 +223,7 @@ describe('Prim Tests', () => {
         const end = 21
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -238,7 +238,7 @@ describe('Prim Tests', () => {
         const end = 22
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -253,7 +253,7 @@ describe('Prim Tests', () => {
         const end = 23
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -268,7 +268,7 @@ describe('Prim Tests', () => {
         const end = 24
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -283,7 +283,7 @@ describe('Prim Tests', () => {
         const end = 25
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -298,7 +298,7 @@ describe('Prim Tests', () => {
         const end = 26
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -313,7 +313,7 @@ describe('Prim Tests', () => {
         const end = 27
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -328,7 +328,7 @@ describe('Prim Tests', () => {
         const end = 28
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -343,7 +343,7 @@ describe('Prim Tests', () => {
         const end = 29
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -358,7 +358,7 @@ describe('Prim Tests', () => {
         const end = 1
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -373,7 +373,7 @@ describe('Prim Tests', () => {
         const end = 6
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -388,7 +388,7 @@ describe('Prim Tests', () => {
         const end = 5
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -403,7 +403,7 @@ describe('Prim Tests', () => {
         const end = 2
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -418,7 +418,7 @@ describe('Prim Tests', () => {
         const end = 4
         
         // Act
-        await prim.FindShortestPath(network.GetNodes(), start, end)
+        await prim.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)

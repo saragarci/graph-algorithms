@@ -1,4 +1,4 @@
-import { LinkState, Node, NodeState } from '../types'
+import { Link, LinkState, Node, NodeState } from '../types'
 
 class Prim {
     private delay: number
@@ -7,7 +7,7 @@ class Prim {
         this.delay = delay
     }
 
-    public FindShortestPath = async (nodes: Node[], start: number, end: number) : Promise<void> => {
+    public FindShortestPath = async (nodes: Node[], links: Link[], start: number, end: number) : Promise<void> => {
         if (!nodes.length)
             return
 
