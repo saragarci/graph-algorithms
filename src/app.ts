@@ -8,11 +8,12 @@ import Dijkstra from './algorithms/Dijkstra'
 import Prim from './algorithms/Prim'
 import { Examples } from './utils/exampleAdjacencyList'
 import Kruskal from './algorithms/Kruskal'
+import BellmanFord from './algorithms/BellmanFord'
 
 class App {
   private adjacencyList: AdjacencyList = new AdjacencyList(NetworkType.Example, Examples.Example10)
   private network: Network = new Network(this.adjacencyList)
-  private delay: number = 10
+  private delay: number = 400
 
   constructor() {
     this.renderNetwork()
@@ -78,6 +79,15 @@ class App {
         const dijkstra = new Dijkstra(self.delay)
         self.network.SetStartAndEndNodes(0, 5)
         await dijkstra.FindShortestPath(self.network.GetNodes(), self.network.GetLinks(), 0, 5)
+        self.network.DrawShortestPath(0, 5)
+      })
+
+      // Bellman-Ford
+      const runBellmanFordButton = document.getElementById('run-bellmanFord')
+      runBellmanFordButton?.addEventListener('click', async () => {
+        const bellmanFord = new BellmanFord(self.delay)
+        self.network.SetStartAndEndNodes(0, 5)
+        await bellmanFord.FindShortestPath(self.network.GetNodes(), self.network.GetLinks(), 0, 5)
         self.network.DrawShortestPath(0, 5)
       })
     })
