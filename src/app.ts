@@ -9,11 +9,12 @@ import Prim from './algorithms/Prim'
 import { Examples } from './utils/exampleAdjacencyList'
 import Kruskal from './algorithms/Kruskal'
 import BellmanFord from './algorithms/BellmanFord'
+import AStar from './algorithms/AStar'
 
 class App {
   private adjacencyList: AdjacencyList = new AdjacencyList(NetworkType.Example, Examples.Example10)
   private network: Network = new Network(this.adjacencyList)
-  private delay: number = 400
+  private delay: number = 100
 
   constructor() {
     this.renderNetwork()
@@ -88,6 +89,15 @@ class App {
         const bellmanFord = new BellmanFord(self.delay)
         self.network.SetStartAndEndNodes(0, 5)
         await bellmanFord.FindShortestPath(self.network.GetNodes(), self.network.GetLinks(), 0, 5)
+        self.network.DrawShortestPath(0, 5)
+      })
+
+      // A*
+      const runAStarButton = document.getElementById('run-aStar')
+      runAStarButton?.addEventListener('click', async () => {
+        const aStar = new AStar(self.delay)
+        self.network.SetStartAndEndNodes(0, 5)
+        await aStar.FindShortestPath(self.network.GetNodes(), self.network.GetLinks(), 0, 5)
         self.network.DrawShortestPath(0, 5)
       })
     })
