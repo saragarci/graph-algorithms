@@ -1,22 +1,22 @@
 import { Link, NetworkType, Node } from '../types'
-import AdjacencyList from './adjacencyList'
+import AdjacencyMatrix from './adjacencyMatrix'
 
 class Network {
     private nodes: Node[] = []
     private links: Link[] = []
     private type: NetworkType = NetworkType.Example
 
-    constructor(adjacencyList: AdjacencyList) {
-        // Create nodes based on the length of the adjacency list
-        const adjacencyListMatrix = adjacencyList.GetAdjacencyList()
-        for (let i = 0; i < adjacencyListMatrix.length; i++) {
+    constructor(adjacencyMatrix: AdjacencyMatrix) {
+        // Create nodes based on the length of the adjacency matrix
+        const matrix = adjacencyMatrix.GetAdjacencyMatrix()
+        for (let i = 0; i < matrix.length; i++) {
             this.nodes.push(new Node(i))
         }
   
-        // Create links based on the adjacency list
-        for (let i = 0; i < adjacencyListMatrix.length; i++) {
-            for (let j = 0; j < adjacencyListMatrix[i].length; j++) {
-                const value: number = adjacencyListMatrix[i][j]
+        // Create links based on the adjacency matrix
+        for (let i = 0; i < matrix.length; i++) {
+            for (let j = 0; j < matrix[i].length; j++) {
+                const value: number = matrix[i][j]
                 if (value) {
                     const source: Node = this.nodes[i]
                     const target: Node = this.nodes[j]
@@ -27,7 +27,7 @@ class Network {
             }
         }
 
-        this.type = adjacencyList.GetNetworkType()
+        this.type = adjacencyMatrix.GetNetworkType()
     }
 
     public GetNodes = () : Node[] => this.nodes

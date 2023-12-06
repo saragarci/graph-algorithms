@@ -1,4 +1,4 @@
-import AdjacencyList from './utils/adjacencyList'
+import AdjacencyMatrix from './utils/adjacencyMatrix'
 import Network from './utils/network'
 import NetworkRenderer from './viz/networkRenderer'
 import { NetworkType } from './types'
@@ -6,14 +6,14 @@ import Bfs from './algorithms/Bfs'
 import Dfs from './algorithms/Dfs'
 import Dijkstra from './algorithms/Dijkstra'
 import Prim from './algorithms/Prim'
-import { Examples } from './utils/exampleAdjacencyList'
+import { Examples } from './utils/exampleAdjacencyMatrix'
 import Kruskal from './algorithms/Kruskal'
 import BellmanFord from './algorithms/BellmanFord'
 import AStar from './algorithms/AStar'
 
 class App {
-  private adjacencyList: AdjacencyList = new AdjacencyList(NetworkType.Example, Examples.Example10)
-  private network: Network = new Network(this.adjacencyList)
+  private adjacencyMatrix: AdjacencyMatrix = new AdjacencyMatrix(NetworkType.Example, Examples.Example10)
+  private network: Network = new Network(this.adjacencyMatrix)
   private delay: number = 100
 
   constructor() {
@@ -104,8 +104,8 @@ class App {
   }
 
   private createNetwork = (type: NetworkType) : void => {
-    this.adjacencyList = new AdjacencyList(type, type === NetworkType.Example ? Examples.Example10 : undefined)
-    this.network = new Network(this.adjacencyList)
+    this.adjacencyMatrix = new AdjacencyMatrix(type, type === NetworkType.Example ? Examples.Example10 : undefined)
+    this.network = new Network(this.adjacencyMatrix)
     this.renderNetwork()
   }
 }

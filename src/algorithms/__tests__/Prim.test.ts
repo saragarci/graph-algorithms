@@ -1,8 +1,8 @@
 import Prim from '../Prim'
 import { NetworkType } from '../../types'
-import { Examples } from '../../utils/exampleAdjacencyList';
+import { Examples } from '../../utils/exampleAdjacencyMatrix';
 import Network from '../../utils/network';
-import AdjacencyList from '../../utils/adjacencyList';
+import AdjacencyMatrix from '../../utils/adjacencyMatrix';
 
 jest.mock('d3', () => {
     return {
@@ -23,7 +23,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 1: (0, 5)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example1))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example1))
         const start = 0
         const end = 5
 
@@ -38,7 +38,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 2: (0, 6)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example2))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example2))
         const start = 0
         const end = 6
         
@@ -53,7 +53,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 3: (0, 14)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example3))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example3))
         const start = 0
         const end = 14
         
@@ -68,7 +68,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 4: (0, 14)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example4))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example4))
         const start = 0
         const end = 14
         
@@ -83,7 +83,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 5: (0, 1)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example5))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example5))
         const start = 0
         const end = 1
         
@@ -98,7 +98,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 6: (0, 0)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example6))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example6))
         const start = 0
         const end = 0
         
@@ -113,7 +113,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 7: (0, 14)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example7))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example7))
         const start = 0
         const end = 14
         
@@ -128,7 +128,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 15)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 15
         
@@ -143,7 +143,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 16)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 16
         
@@ -158,7 +158,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 17)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 17
         
@@ -173,7 +173,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 18)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 18
         
@@ -188,7 +188,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 19)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 19
         
@@ -203,7 +203,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 20)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 20
         
@@ -218,7 +218,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 21)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 21
         
@@ -233,7 +233,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 22)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 22
         
@@ -248,7 +248,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 23)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 23
         
@@ -263,7 +263,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 24)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 24
         
@@ -278,7 +278,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 25)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 25
         
@@ -293,7 +293,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 26)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 26
         
@@ -308,7 +308,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 27)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 27
         
@@ -323,7 +323,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 28)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 28
         
@@ -338,7 +338,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 8: (0, 29)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 29
         
@@ -353,7 +353,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 9: (0, 1)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example9))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example9))
         const start = 0
         const end = 1
         
@@ -368,7 +368,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 9: (0, 6)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example9))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example9))
         const start = 0
         const end = 6
         
@@ -383,7 +383,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 10: (0, 5)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example10))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example10))
         const start = 0
         const end = 5
         
@@ -398,7 +398,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 11: (0, 2)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example11))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example11))
         const start = 0
         const end = 2
         
@@ -413,7 +413,7 @@ describe('Prim Tests', () => {
 
     test('should find the shortest path - Example 11: (0, 4)', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example11))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example11))
         const start = 0
         const end = 4
         

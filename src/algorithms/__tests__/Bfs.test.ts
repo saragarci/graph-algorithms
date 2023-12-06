@@ -1,8 +1,8 @@
 import Bfs from '../Bfs'
 import { NetworkType } from '../../types'
-import { Examples } from '../../utils/exampleAdjacencyList';
+import { Examples } from '../../utils/exampleAdjacencyMatrix';
 import Network from '../../utils/network';
-import AdjacencyList from '../../utils/adjacencyList';
+import AdjacencyMatrix from '../../utils/adjacencyMatrix';
 
 jest.mock('d3', () => {
     return {
@@ -23,7 +23,7 @@ describe('Bfs Tests', () => {
 
     test('should find the shortest path - Example 1', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example1))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example1))
         const start = 0
         const end = 5
 
@@ -38,7 +38,7 @@ describe('Bfs Tests', () => {
 
     test('should find the shortest path - Example 2', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example2))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example2))
         const start = 0
         const end = 6
         
@@ -53,7 +53,7 @@ describe('Bfs Tests', () => {
 
     test('should find the shortest path - Example 3', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example3))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example3))
         const start = 0
         const end = 14
         
@@ -68,7 +68,7 @@ describe('Bfs Tests', () => {
 
     test('should find the shortest path - Example 4', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example4))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example4))
         const start = 0
         const end = 14
         
@@ -83,7 +83,7 @@ describe('Bfs Tests', () => {
 
     test('should find the shortest path - Example 5', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example5))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example5))
         const start = 0
         const end = 1
         
@@ -98,7 +98,7 @@ describe('Bfs Tests', () => {
 
     test('should find the shortest path - Example 6', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example6))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example6))
         const start = 0
         const end = 0
         
@@ -113,7 +113,7 @@ describe('Bfs Tests', () => {
 
     test('should find the shortest path - Example 7', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example7))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example7))
         const start = 0
         const end = 14
         
@@ -128,7 +128,7 @@ describe('Bfs Tests', () => {
 
     test('should find the shortest path - Example 8', async () => {
         // Arrange
-        const network = new Network(new AdjacencyList(NetworkType.Example, Examples.Example8))
+        const network = new Network(new AdjacencyMatrix(NetworkType.Example, Examples.Example8))
         const start = 0
         const end = 29
         
