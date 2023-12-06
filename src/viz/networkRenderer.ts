@@ -69,6 +69,9 @@ class NetworkRenderer {
       .force('center', d3.forceCenter(window.innerWidth / 2, window.innerHeight / 2).strength(this.centerStrength))
       .on('tick', ticked)
 
+    // Calculate the max value from your links data
+    const maxValue = d3.max(links, d => d.value);
+
     // Draw links
     const link = svg.append('g')
       .attr('stroke', '#999')
@@ -76,7 +79,7 @@ class NetworkRenderer {
       .data(links)
       .join('line')
       .attr('link-id', (d: Link) => `${d.source.id}-${d.target.id}`)
-      .attr('stroke-width',  (d: Link) => Math.sqrt(d.value))
+      .attr('stroke-width', (d: Link) => maxValue ? Math.sqrt(maxValue - d.value) : 1)
       .attr('stroke-opacity', (d: Link) => d.GetStrokeOpacity())
       //.attr('stroke-length', (d: Link) => d.value)
 
@@ -103,15 +106,15 @@ class NetworkRenderer {
       .text(d => d.id)
       .attr('label-id', d => d.id)
 
-    const linkLabels = svg.append("g")
-      .attr("class", "link-labels")
-      .selectAll(".link-label")
-      .data(links)
-      .enter().append("text")
-      .attr("font-family", "sans-serif")
-      .attr("font-size", 6)
-      .attr("fill", "white")
-      .text(d => d.value)
+    // const linkLabels = svg.append("g")
+    //   .attr("class", "link-labels")
+    //   .selectAll(".link-label")
+    //   .data(links)
+    //   .enter().append("text")
+    //   .attr("font-family", "sans-serif")
+    //   .attr("font-size", 6)
+    //   .attr("fill", "white")
+    //   .text(d => d.value)
 
     // Add a drag behavior.
     node.call(d3.drag<SVGCircleElement, Node, unknown>()
@@ -140,9 +143,9 @@ class NetworkRenderer {
         .attr('x', (d: Node) => d.x!)
         .attr('y', (d: Node) => d.y!)
 
-      linkLabels
-        .attr("x", (d: Link) => (d.source.x! + d.target.x!) / 2)
-        .attr("y", (d: Link) => (d.source.y! + d.target.y!) / 2);
+      // linkLabels
+      //   .attr("x", (d: Link) => (d.source.x! + d.target.x!) / 2)
+      //   .attr("y", (d: Link) => (d.source.y! + d.target.y!) / 2);
     }
 
     function dragStarted(event: d3.D3DragEvent<SVGCircleElement, Node, undefined>, d: Node) {
