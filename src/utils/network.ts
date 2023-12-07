@@ -46,9 +46,9 @@ class Network {
         endNode.Update()
     }
 
-    public DrawShortestPath = (start: number, end: number) : Number[] => {
+    public DrawShortestPath = (start: number, end: number) : number[] => {
         let currentNode: Node = this.nodes[end]
-        let path: Number[] = []
+        let path: number[] = []
         while (currentNode) {
             // update node
             currentNode.isPath = true

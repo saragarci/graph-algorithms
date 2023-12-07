@@ -67,7 +67,7 @@ export class Node implements Node {
       if (this.isPath) return 'orange'
       switch (this.state) {
         case NodeState.Undiscovered:
-            return '#999'
+            return '#999' // gray
         case NodeState.Discovered:
             return 'red'
         case NodeState.Processed:

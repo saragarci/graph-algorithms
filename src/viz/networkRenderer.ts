@@ -79,7 +79,7 @@ class NetworkRenderer {
       .data(links)
       .join('line')
       .attr('link-id', (d: Link) => `${d.source.id}-${d.target.id}`)
-      .attr('stroke-width', (d: Link) => maxValue ? Math.sqrt(maxValue - d.value) : 1)
+      .attr('stroke-width', (d: Link) => maxValue ? Math.sqrt(maxValue - d.value + 1) : 1)
       .attr('stroke-opacity', (d: Link) => d.GetStrokeOpacity())
       //.attr('stroke-length', (d: Link) => d.value)
 

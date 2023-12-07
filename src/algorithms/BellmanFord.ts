@@ -1,4 +1,4 @@
-import { Link, LinkState, Node, NodeState, PriorityQueueElement } from '../types'
+import { Link, LinkState, Node, NodeState } from '../types'
 
 class BellmanFord {
     private delay: number

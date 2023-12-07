@@ -41,7 +41,7 @@ class Dijkstra {
             const { node: currentNode, value: dist} = queue.Peek()!
             queue.Remove();
 
-            if (currentNode.id === end) { // TODO: Remove this?
+            if (currentNode.id === end) {
                 currentNode.state = NodeState.Processed
                 currentNode.Update()
                 await new Promise(resolve => setTimeout(resolve, this.delay))

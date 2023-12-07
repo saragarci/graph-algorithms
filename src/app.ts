@@ -71,7 +71,7 @@ class App {
         const kruskal = new Kruskal(self.delay)
         self.network.SetStartAndEndNodes(0, 5)
         await kruskal.FindShortestPath(self.network.GetNodes(), self.network.GetLinks(), 0, 5)
-        self.network.DrawShortestPath(0, 5)
+        //self.network.DrawShortestPath(0, 5)
       })
 
       // Dijkstra

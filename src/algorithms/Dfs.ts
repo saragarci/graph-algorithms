@@ -22,7 +22,7 @@ class Dfs {
 
         for (const [targetNode, link] of currentNode.children.entries()) {
             if (targetNode.state === NodeState.Undiscovered) {
-                // PROCESS EDGE
+                // Update link
                 link.state = LinkState.Discovered
                 link.Update()
                 await new Promise(resolve => setTimeout(resolve, this.delay))
@@ -33,7 +33,6 @@ class Dfs {
             }
         }
 
-        // PROCESS NODE LATE
         currentNode.state = NodeState.Processed
         currentNode.Update()
         await new Promise(resolve => setTimeout(resolve, this.delay))
