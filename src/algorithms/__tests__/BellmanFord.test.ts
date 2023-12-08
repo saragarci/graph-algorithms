@@ -1,4 +1,4 @@
-import Dijkstra from '../Dijkstra'
+import BellmanFord from '../BellmanFord'
 import { NetworkType } from '../../types'
 import { Examples } from '../../utils/exampleAdjacencyMatrix';
 import Network from '../../utils/network';
@@ -14,11 +14,11 @@ jest.mock('d3', () => {
     };
 });
 
-describe('Dijkstra Tests', () => {
-    let dijkstra: Dijkstra
+describe('Bellman-Ford Tests', () => {
+    let bellmanFord: BellmanFord
 
     beforeEach(() => {
-        dijkstra = new Dijkstra(0) // 0 delay for tests to run quickly
+        bellmanFord = new BellmanFord(0) // 0 delay for tests to run quickly
     })
 
     test('should find the shortest path - Example 1', async () => {
@@ -28,7 +28,7 @@ describe('Dijkstra Tests', () => {
         const end = 5
 
         // Act
-        await dijkstra.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
+        await bellmanFord.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
 
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -43,7 +43,7 @@ describe('Dijkstra Tests', () => {
         const end = 6
         
         // Act
-        await dijkstra.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
+        await bellmanFord.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -58,7 +58,7 @@ describe('Dijkstra Tests', () => {
         const end = 14
         
         // Act
-        await dijkstra.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
+        await bellmanFord.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -73,7 +73,7 @@ describe('Dijkstra Tests', () => {
         const end = 14
         
         // Act
-        await dijkstra.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
+        await bellmanFord.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -88,7 +88,7 @@ describe('Dijkstra Tests', () => {
         const end = 1
         
         // Act
-        await dijkstra.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
+        await bellmanFord.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -103,7 +103,7 @@ describe('Dijkstra Tests', () => {
         const end = 0
         
         // Act
-        await dijkstra.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
+        await bellmanFord.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -118,7 +118,7 @@ describe('Dijkstra Tests', () => {
         const end = 14
         
         // Act
-        await dijkstra.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
+        await bellmanFord.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -133,7 +133,7 @@ describe('Dijkstra Tests', () => {
         const end = 29
         
         // Act
-        await dijkstra.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
+        await bellmanFord.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -148,7 +148,7 @@ describe('Dijkstra Tests', () => {
         const end = 6
         
         // Act
-        await dijkstra.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
+        await bellmanFord.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
@@ -163,11 +163,11 @@ describe('Dijkstra Tests', () => {
         const end = 5
         
         // Act
-        await dijkstra.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
+        await bellmanFord.FindShortestPath(network.GetNodes(), network.GetLinks(), start, end)
         
         // Assert
         const shortestPath = network.DrawShortestPath(start, end)
-        const expectedShortestPath: Number[] = [0, 1, 3, 5]
+        const expectedShortestPath: Number[] = [0, 2, 1, 3, 4, 5]
         expect(shortestPath).toStrictEqual(expectedShortestPath)
     })
 })
